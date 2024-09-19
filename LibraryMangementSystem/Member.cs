@@ -25,9 +25,13 @@ namespace LibraryMangementSystem
         }
 
         public static object Name { get; protected set; }
+
         public int MemberId { get => memberId; set => memberId = value; }
+        
         public string MemberName { get => memberName; set => memberName = value; }
+        
         public string MemberEmail { get => memberEmail; set => memberEmail = value; }
+        
         internal List<Book> BorrowedBooks1 { get => BorrowedBooks; set => BorrowedBooks = value; }
 
         public virtual string BarrowBook (Book book)

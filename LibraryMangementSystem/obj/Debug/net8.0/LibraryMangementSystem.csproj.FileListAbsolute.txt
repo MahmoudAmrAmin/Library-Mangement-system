@@ -12,3 +12,4 @@ E:\LibraryMangementSystem\LibraryMangementSystem\obj\Debug\net8.0\refint\Library
 E:\LibraryMangementSystem\LibraryMangementSystem\obj\Debug\net8.0\LibraryMangementSystem.pdb
 E:\LibraryMangementSystem\LibraryMangementSystem\obj\Debug\net8.0\LibraryMangementSystem.genruntimeconfig.cache
 E:\LibraryMangementSystem\LibraryMangementSystem\obj\Debug\net8.0\ref\LibraryMangementSystem.dll
+E:\LibraryMangementSystem\LibraryMangementSystem\obj\Debug\net8.0\LibraryMangementSystem.sourcelink.json
