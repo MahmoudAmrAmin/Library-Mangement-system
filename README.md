@@ -1,4 +1,4 @@
-﻿Library Management System
+# ﻿Library Management System
 
 ## Project Overview
 The **Library Management System** is a console-based application developed in C# using Object-Oriented Programming (OOP) principles and LINQ. It provides separate functionalities for both **admin** and **customer** roles. The admin can manage the library’s collection and members, while customers can browse and borrow books.
