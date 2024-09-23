@@ -11,8 +11,8 @@ namespace LibraryMangementSystem
         private decimal monthlyFee;
         private double discountRate;
 
-        public PremiumMember( int memberId ,string memberName , string memberEmail,decimal monthlyFee, double discountRate)
-        :base(memberId , memberName , memberEmail)  
+        public PremiumMember( int memberId ,string memberName ,bool isPremuim ,  string memberEmail,decimal monthlyFee, double discountRate)
+        :base(memberId , memberName , memberEmail ,true)  
         {
             this.monthlyFee = monthlyFee;
             this.discountRate = discountRate;
@@ -30,6 +30,7 @@ namespace LibraryMangementSystem
             }*/
 
             base.BarrowBook(book);
+
             return $"Premium member {Name} borrowed a book with a discount.";
            
         }

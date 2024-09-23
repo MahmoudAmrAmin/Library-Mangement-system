@@ -45,7 +45,7 @@ namespace LibraryMangementSystem
 
         public override string ToString()
         {
-            return $"Book id is {BookId} , Title is {Title} , it author is {Author} , isbn is {Isbn}"; 
+            return $"Book id is {BookId} , Title is {Title} , it author is {Author} , isbn is {Isbn} , is barrow {IsBorrowed}"; 
         }
 
     }

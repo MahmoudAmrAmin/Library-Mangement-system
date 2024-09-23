@@ -16,15 +16,19 @@ namespace LibraryMangementSystem
         private string memberName;
         private string memberEmail; 
         private List<Book> BorrowedBooks = new List<Book>();
+        private bool isPremium = false;
 
-        public Member(int memberId, string memberName, string memberEmail)
+
+
+        public Member(int memberId, string memberName, string memberEmail , bool isPremium)
         {
             this.memberId = memberId;
             this.memberName = memberName;
             this.memberEmail = memberEmail;  
+            this.isPremium = isPremium;
         }
 
-        public static object Name { get; protected set; }
+        public static string  Name { get; protected set; }
 
         public int MemberId { get => memberId; set => memberId = value; }
         
@@ -32,7 +36,10 @@ namespace LibraryMangementSystem
         
         public string MemberEmail { get => memberEmail; set => memberEmail = value; }
         
-        internal List<Book> BorrowedBooks1 { get => BorrowedBooks; set => BorrowedBooks = value; }
+        
+        public List<Book> BorrowedBooks1 { get => BorrowedBooks; set => BorrowedBooks = value; }
+        
+        protected bool IsPremium { get => isPremium; set => isPremium = value; }
 
         public virtual string BarrowBook (Book book)
         {
@@ -64,7 +71,7 @@ namespace LibraryMangementSystem
 
         public override string ToString()
         {
-            return $" name is {memberName},id:{MemberId},email:{MemberEmail}, The number of books is borrowed:{BorrowedBooks1.Count}";
+            return $" name is {memberName},id:{MemberId},email:{MemberEmail}, The number of books is borrowed:{BorrowedBooks1.Count} , Ispremium {IsPremium}";
         }
 
     }

@@ -9,6 +9,7 @@ namespace LibraryMangementSystem
     public  class Input
     {
 
+
         public static int ReadInt ()
         {
             string ? input = Console.ReadLine ();
@@ -24,6 +25,8 @@ namespace LibraryMangementSystem
             return decimal.TryParse(input, out res) ? res : 0.0m;
 
         }
+
+
         public static double  ReadDouble()
         {
             string? input = Console.ReadLine();

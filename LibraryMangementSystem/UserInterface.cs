@@ -14,7 +14,7 @@ namespace LibraryMangementSystem
         private  static Library lib = new Library();
        
 
-        internal static Library  Library { get => lib; set => lib = value; }
+        public  static Library  Library { get => lib; set => lib = value; }
 
         public UserInterface( Library _lib)
         {
@@ -52,6 +52,7 @@ namespace LibraryMangementSystem
                         Console.WriteLine("Invalid choice. Please try again.");
                         break;
                 }
+
                 if(isRunning){
                     Console.WriteLine("\nPress any key to return to the menu...");
                     Console.ReadKey();
@@ -65,6 +66,7 @@ namespace LibraryMangementSystem
         public static void Admin ()
         {
             bool  isRunning = true;
+
             while (isRunning) 
             {
                 Console.Clear();
@@ -132,43 +134,60 @@ namespace LibraryMangementSystem
         private static void AddBook()
         {
             Clear();
-            Console.WriteLine("Press 'Esc' to stop the function at any time...");
             var book = new Book();
                 
-                Console.WriteLine("======================");
-                
-                Console.WriteLine("enter book details");
-
-                Console.WriteLine("=======================");
-
-                int bookId = lib.Books.Count + 1;
-                book.BookId = bookId;
-
-                Console.WriteLine("enter book Title");
-                string? name = Console.ReadLine() ?? string.Empty;
-
-                book.Title = name;
-
-
-                Console.WriteLine("============================");
-                Console.WriteLine("enter author of book");
-                string? author = Console.ReadLine() ?? string.Empty;
-
-                book.Author = author;
-                Console.WriteLine("=============================");
-
-                Console.WriteLine("enter isbn of book");
-                string isbn = Console.ReadLine() ?? string.Empty;
-
-                book.Isbn = isbn;
-
-                book.IsBorrowed = false;
-
-
+            Console.WriteLine("======================");
             
-              lib.AddBook(book);
-                Console.WriteLine("==============================");
-                Console.WriteLine("Book added successfully!");
+            Console.WriteLine("enter book details");
+
+            Console.WriteLine("=======================");
+
+            int bookId = lib.Books.Count + 1;
+            book.BookId = bookId;
+
+            Console.WriteLine("enter book Title");
+            string? name = Console.ReadLine().Trim().ToLower(); 
+
+            while (name is null  || name == string.Empty)
+            {
+                Clear();
+                Console.WriteLine( "====> Can't enter empty Title <====");
+               name = Console.ReadLine().Trim().ToLower();
+
+            }
+            book.Title = name;
+
+
+            Console.WriteLine("============================");
+            Console.WriteLine("enter author of book");
+            string? author = Console.ReadLine();
+            while (author is null || author == string.Empty)
+            {
+                Clear();
+                Console.WriteLine("====> Can't enter empty author <====");
+                author = Console.ReadLine().Trim().ToLower();
+
+            }
+
+            book.Author = author;
+            
+            Console.WriteLine("=============================");
+            Console.WriteLine("enter isbn of book");
+            string isbn = Console.ReadLine() ?? string.Empty;
+            while ( isbn == string.Empty)
+            {
+                Clear();
+                Console.WriteLine("====> Can't enter empty isbn <====");
+                isbn = Console.ReadLine().Trim().ToLower() ?? string.Empty;
+            }
+            book.Isbn = isbn;
+
+            book.IsBorrowed = false;
+
+
+            lib.AddBook(book);
+            Console.WriteLine("==============================");
+            Console.WriteLine("Book added successfully!");
            
         }
 
@@ -192,6 +211,7 @@ namespace LibraryMangementSystem
             while (isRunning) 
             {
                 string  ? subscriptionType = ReadLine()?.Trim().ToLower() ?? string.Empty;
+                
                 switch (subscriptionType)
                 {
                     case "yes": 
@@ -207,75 +227,65 @@ namespace LibraryMangementSystem
                         break;
                 }
             }
+            Console.WriteLine("=======================");
+            Console.WriteLine("enter member name");
+            Console.WriteLine("========================");
+            string? name = ReadLine() ?? string.Empty;
+
+            while (name == string.Empty)
+            {
+                Clear() ;   
+                Console.WriteLine("Can't enter empty name");
+                name = ReadLine() ?? string.Empty;
+
+            }
+
+            Clear();
+            Console.WriteLine("========================");
+            Console.WriteLine("enter member email");
+            Console.WriteLine("========================");
+            string? email = ReadLine() ?? string.Empty;
+            while (email == string.Empty)
+            {
+                Clear();
+                Console.WriteLine("Can't enter empty name");
+                email = ReadLine() ?? string.Empty;
+
+            }
+
+
 
             if (isPremuim)
             {
-                Console.WriteLine("=======================");
-                Console.WriteLine("enter member name");
-                Console.WriteLine("========================");
-                string ?  name = ReadLine() ?? string.Empty;
-                Clear();
-                Console.WriteLine("========================");
-                Console.WriteLine("enter member email");
-                Console.WriteLine("========================");
-                string ? email = ReadLine() ?? string.Empty;
+                
                 Clear();
 
                 Console.WriteLine("========================");
                 Console.WriteLine("enter monthly fee");
                 Console.WriteLine("========================");
-                var monthlyFee = Input.ReadDecimal();
+                decimal monthlyFee = Input.ReadDecimal();
+                
+                
                 Clear();
 
                 Console.WriteLine("========================");
                 Console.WriteLine("enter discount rate");
                 Console.WriteLine("========================");
-                var discountRate = Input.ReadDouble();
+                double  discountRate = Input.ReadDouble();
                 Clear();
 
 
-                Member premuimMember = new PremiumMember(memberId, name, email, monthlyFee, discountRate);
+                Member premuimMember = new PremiumMember(memberId, name,  true ,email, monthlyFee, discountRate);
 
                 lib.AddMember(premuimMember);
-                Console.WriteLine("Member added successfully!");
+                Console.WriteLine("Premuim Member added successfully!");
 
             }
             else
             {
-                Clear(); 
-                Console.WriteLine("=======================");
-                Console.WriteLine("enter member name");
-                Console.WriteLine("========================");
-                string? name = ReadLine() ?? string.Empty;
-
-                while (name == null || name == string.Empty)
-                {
-                    Clear();
-                    Console.WriteLine("======> can't enter empty name <========");
-                    Console.WriteLine();
-                    Console.WriteLine("========================");
-                    Console.WriteLine("enter your name");
-                    Console.WriteLine("========================");
-                    name = ReadLine();
-                }
-                Clear();
-                Console.WriteLine("========================");
-                Console.WriteLine("enter member email");
-                Console.WriteLine("========================");
                 
-                string? email = ReadLine() ?? string.Empty;
-                while (email == string.Empty) 
-                { 
-                     Clear();
-                    Console.WriteLine("======> can't enter empty email<========");
-                    Console.WriteLine();
-                    Console.WriteLine("========================");
-                    Console.WriteLine("enter your email");
-                    Console.WriteLine("========================");
-                    email = ReadLine();
-                }
                 Clear(); 
-                Member member = new Member(memberId, name, email);
+                Member member = new Member(memberId, name, email ,false);
 
                 lib.AddMember(member);
                 Console.WriteLine("Member added successfully!");
@@ -286,9 +296,11 @@ namespace LibraryMangementSystem
 
         private static void ViewBooks ()
         {
-            var library = lib;                
-            if(library.Books.Any())
+            var library = lib; 
+            
+            if( library.Books.Any() )
             {
+
                 foreach (var BooksViwer in library.Books)
                 {
 
@@ -301,16 +313,22 @@ namespace LibraryMangementSystem
                 Console.WriteLine("our library is empty");
             }
         }
+
+
+
         private static void ViweMembers ()
         {
 
 
             Clear();    
 
-            foreach( var Member in lib.Members)
+            foreach( var Member in lib.Members )
             {
+
                 Console.WriteLine(Member);
+
             }
+
         }
         
         private static void SearchBook()
@@ -320,7 +338,17 @@ namespace LibraryMangementSystem
             Console.WriteLine("enter book name");
             Console.WriteLine("===================");
 
-            string   bookName = ReadLine() ??  String.Empty;
+            string bookName = ReadLine();
+
+            while (bookName is  null || bookName == string.Empty) 
+            {
+
+                Clear();
+                Console.WriteLine(" =====> Can't enter empty string <====");
+
+                bookName = ReadLine();  
+            
+            }
 
             var res = lib[bookName];
             Console.WriteLine(res);
